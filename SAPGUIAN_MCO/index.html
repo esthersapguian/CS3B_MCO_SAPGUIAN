@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Verification - Welcome</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 0;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 64rem; /* 1024px */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .main-container {
+                flex-direction: row;
+            }
+        }
+
+        .form-section {
+            width: 100%;
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-section {
+                width: 60%;
+                padding: 2.5rem;
+            }
+        }
+
+
+        .heading {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .underline {
+            height: 0.25rem;
+            width: 5rem;
+            background-color: #3b82f6;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            color: #4b5563;
+        }
+
+        .form-section {
+            padding-left: 15%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+
+        .small-note {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            animation: pulse 2s infinite;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .already-have-code {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .already-have-code a {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .already-have-code a:hover {
+            color: #1e40af;
+        }
+
+        .footer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 64rem;
+            text-align: center;
+            color: white;
+            font-size: 0.875rem;
+            padding: 1rem 0;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        
+
+        <!-- Form Section -->
+        <form action="send_otp.php" method="POST" class="form-section">
+            <div class="form-group">
+                <h1 class="heading">Welcome!</h1>
+                <div class="underline"></div>
+                <p class="description">
+                    We'll send a verification code to your email but before that you'll need to finish this step.
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Enter your name" required>
+
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" placeholder="Enter your subject" required>
+
+                <label for="message" class="form-label">Message</label>
+                <input type="text" id="message" name="message" class="form-input" placeholder="Enter your message" required>
+
+                <p class="small-note">We'll send a verification code to this email address.</p>
+            </div>
+
+            <button type="submit" id="send-code-btn" class="submit-btn">Send Code</button>
+
+            <div class="already-have-code">
+                <p>
+                    Already have a code?
+                    <a href="verify.php" id="already-have-code">Enter it here</a>
+                </p>
+            </div>
+           
+
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2023 Email Verification System</p>
+    </div>
+
+</body>
+</html>
